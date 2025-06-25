@@ -1,0 +1,19 @@
+body {
+    position: relative;
+    /* background: ; */
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.02), rgba(0,0,0,0.2)), url('../images/bg-image.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+    pointer-events: none;
+}
+
+

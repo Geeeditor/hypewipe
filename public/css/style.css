@@ -1,0 +1,218 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&family=Oleo+Script:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Shadows+Into+Light&display=swap');
+
+.oleo-script-regular {
+    font-family: "Oleo Script", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .oleo-script-bold {
+    font-family: "Oleo Script", system-ui;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  .poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+
+  .poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  .poppins-black {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  .poppins-thin-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+
+  .poppins-extralight-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+  }
+
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .poppins-medium-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .poppins-semibold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  .poppins-bold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  .poppins-extrabold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+  }
+
+  .poppins-black-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+
+  .blur-bg {
+    /* From https://css.glass */
+background: rgba(5, 5, 5, 0.194);
+
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+/* border-bottom: 1px solid rgba(0, 0, 0, 0.808); */
+
+  }
+
+  .floating-text-container {
+    overflow: hidden; /* Ensure text doesn't overflow the container */
+    white-space: nowrap; /* Prevent line breaks */
+    /* width: fit-content; */
+}
+
+.floating-text {
+    display: inline-block;
+    animation: float 10s linear infinite; /* Adjust duration as needed */
+}
+
+@keyframes float {
+    0% {
+        transform: translateX(100%); /* Start off-screen right */
+    }
+    100% {
+        transform: translateX(-100%); /* Move off-screen left */
+    }
+}
+
+/* From Uiverse.io by satyamchaudharydev */
+.card {
+    width: 240px;
+    height: 254px;
+    /* padding: 0 15px; */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    background: #fff;
+    border-radius: 20px;
+  }
+
+  .card > * {
+    margin: 0;
+  }
+
+  .card__title {
+    font-size: 23px;
+    font-weight: 900;
+    color: #333;
+  }
+
+  .card__content {
+    font-size: 13px;
+    line-height: 18px;
+    color: #333;
+  }
+
+  .card__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card__form input {
+    margin-top: 10px;
+    outline: 0;
+    background: rgb(255, 255, 255);
+    box-shadow: transparent 0px 0px 0px 1px inset;
+    padding: 0.6em;
+    border-radius: 14px;
+    border: 1px solid #333;
+    color: black;
+  }
+
+  .card__form button {
+    border: 0;
+    background: #111;
+    color: #fff;
+    padding: 0.68em;
+    border-radius: 14px;
+    font-weight: bold;
+  }
+
+  .sign-up:hover {
+    opacity: 0.8;
+  }
+
+
+
