@@ -32,7 +32,7 @@
                         </form>
 
                         <div class="flex flex-col justify-center items-end gap-1 w-1/3">
-                            <span class="w-auto text-[70%] text-center poppins-light"><img class="justify-self-center h-[50px]"
+                            <span class="w-auto text-[70%] text-center poppins-light"><img class="justify-self-center mx-auto h-[50px]"
                                     src="{{ $uaw->wallet_type == 'BTC' ? asset('./images/bitcoin.svg') : asset('./images/usdt.svg') }}"
                                     alt="">
                                 <span class="block mt-1">{{ $uaw->wallet_name }}</span>
@@ -60,24 +60,24 @@
 
                     <div
                         class="flex justify-between bg-slate-100 shadow-gray-700 shadow-sm my-2 px-1 py-3 border border-gray-300 rounded-md w-full text-gray-900">
-                        <div class="flex flex-col justify-start items-start">
+                        <div class="flex flex-col justify-start items-start px-2 border-gray-300 border-r">
                             <span class="text-[70%] poppins-light">Credit Balance</span>
                             <span class="text-sm poppins-medium">
                                 {{ $user->userWallet ? '$' . $user->userWallet->wallet_balance ?? 'No wallet :)' : 'No wallet :)' }}
                             </span>
                         </div>
-                        <div class="flex flex-col justify-start items-start border-x">
+                        <div class="flex flex-col justify-start items-start px-2">
                             <span class="text-[70%] poppins-light">Total Earnings</span>
                             <span class="text-sm poppins-medium">
-                                
+
                                $ {{  $user->questJob ?  $taskData->earnings ?? '0.00' : '0.00'}}
                             </span>
                         </div>
-                        <div class="flex flex-col justify-start items-start px-5 border-gray-300 border-x">
+                        <div class="flex flex-col justify-start items-start px-2 border-gray-300 border-x">
                             <span class="text-[70%] poppins-light">Withdrawals</span>
                             <span class="text-sm poppins-medium">{{ $withdrawals->count()}}</span>
                         </div>
-                        <div class="flex flex-col justify-start items-start">
+                        <div class="flex flex-col justify-start items-start px-2">
                             <span class="text-[70%] poppins-light">Deposits</span>
                             <span class="text-sm poppins-medium">{{ $userDeposits->count() }}</span>
                         </div>

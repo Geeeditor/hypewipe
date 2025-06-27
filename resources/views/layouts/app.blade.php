@@ -287,14 +287,17 @@
                 <span class="text-[70%] poppins-light">Withdraw</span>
             </div>
         </a>
-        <a href="/logout" class="flex items-center gap-3 pb-2 border-gray-400 border-b w-full">
-            <div class="flex justify-center items-center bg-blue-600 p-2 rounded-full w-[35px] h-[35px] text-white">
-                <span class="px-1 border border-white rounded-full mdi mdi-logout"></span>
-            </div>
-            <div>
-                <span class="text-[70%] poppins-light">Logout</span>
-            </div>
-        </a>
+        <form method="POST" action="{{ route('logout') }}" class="w-full">
+            @csrf
+            <button type="submit" class="flex items-center gap-3 bg-transparent pb-2 border-gray-400 border-b w-full text-left">
+                <div class="flex justify-center items-center bg-blue-600 p-2 rounded-full w-[35px] h-[35px] text-white">
+                    <span class="px-1 border border-white rounded-full mdi mdi-logout"></span>
+                </div>
+                <div>
+                    <span class="text-[70%] poppins-light">Logout</span>
+                </div>
+            </button>
+        </form>
 
     </div>
 

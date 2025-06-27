@@ -10,8 +10,10 @@ use App\Models\AdminWallets;
 use Illuminate\Http\Request;
 use App\Models\UserWithdrawal;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use App\Models\UserAvailableWallet;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notification as Notification;
 // use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
@@ -79,18 +81,72 @@ class HomeController extends Controller
         $user = Auth()->user();
         $profilePic = $this->getUserPlaceholderImage();
         $wallet = $this->getUserWallet();
-        $taskData = $this->getTaskData();
-        $taskList = $taskList->all();
-        // dd($taskList);
-        return view('auth.quest', 
-            [   
-                'user' => $user, 
+        $questDoneCount = $user->questJob->quest_done; // Get the quest_done value
+        $totalTasks = 38; // Total tasks available
+
+        // Fetch the next task based on quest_done value
+        $nextTaskIndex = $questDoneCount; // This assumes quest_done is zero-based for indexing
+        $taskList = Quest::paginate(1, ['*'], 'page', $nextTaskIndex + 1);
+
+        // Check if there are no tasks available
+        if ($questDoneCount >= $totalTasks) {
+            return view('auth.quest', [
+                'user' => $user,
+                'taskList' => $taskList,
                 'profilePic' => $profilePic,
-                'wallet' => $wallet,
-                'taskData' => $taskData,
-                'taskList' => $taskList
-            ]
-        );
+                'message' => 'No tasks available. Come back tomorrow!',
+                'taskList' => null // No tasks to show
+            ]);
+        }
+
+        return view('auth.quest', [
+            'user' => $user,
+            'taskList' => $taskList,
+            'profilePic' => $profilePic,
+            'wallet' => $wallet,
+            'taskData' => $this->getTaskData(),
+            'questDoneCount' => $questDoneCount
+        ]);
+    }
+
+    public function questStore(Request $request)
+    {
+        // Step 1: Validate the request data
+        $data = $request->validate([
+            'comment' => 'required|string|max:255',
+            'quest_cost' => 'required|numeric|min:0',
+            'quest_commission' => 'required|numeric|min:0|max:100'
+        ]);
+
+
+
+        // Step 2: Get the authenticated user
+        $user = auth()->user();
+
+        // Step 3: Get the user's wallet
+        $userWallet = $user->userWallet ? $user->userWallet : null; // Assuming there's a relationship in User model
+
+        // Step 4: Check if the wallet has sufficient balance
+        if($userWallet == null) {
+            return redirect()->back()->with('error', "Our system can't find a wallet to charge, please create one to begin enjoying your rewards.");
+        }
+
+        if ( $userWallet->wallet_balance < $data['quest_cost']) {
+            return redirect()->back()->with('error', 'Insufficient balance to complete this task.');
+        }
+
+        // Step 5: Deduct the quest cost from the wallet balance
+        $userWallet->wallet_balance -= $data['quest_cost'];
+        $userWallet->save();
+
+        // Step 6: Update the user's questJob model
+        $questJob = $user->questJob; // Assuming there's a relationship in User model
+        $questJob->quest_done += 1; // Increment quest_done by 1
+        $questJob->earnings += ($data['quest_cost'] * $data['quest_commission'] / 100); // Calculate earnings
+        $questJob->save();
+
+        // Step 7: Redirect user back with a success message
+        return redirect()->back()->with('success', 'Quest completed successfully!');
     }
 
     public function userNotification()
@@ -103,6 +159,19 @@ class HomeController extends Controller
         // $userDeposits = UserDeposit::all();
         $userDeposits = $user->userDeposits()->orderBy('updated_at', 'desc')->get();
         $withdrawals = $user->userWithdrawals()->orderBy('updated_at', 'desc')->get();
+        $notifications = DB::table('notifications')->where('notifiable_id', $user->id)->get();
+        $notificationData = [];
+
+        foreach ($notifications as $notification) {
+            // Decode the entire 'data' field, which is a JSON string
+            $data = json_decode($notification->data, true); // No need for ['title'] here
+
+            if (isset($data['title'])) {
+                $notificationData[] = $data['title'];
+            }
+        }
+
+        // dd($notificationData);
 
         $userAvailableWallets = collect();
 
@@ -118,7 +187,8 @@ class HomeController extends Controller
             'userAvailableWallets' => $userAvailableWallets,
             'adminWallets' => $adminWallets,
             'userDeposits' => $userDeposits,
-            'withdrawals' => $withdrawals
+            'withdrawals' => $withdrawals,
+            'notificationData' => $notificationData
         ]);
     }
 
@@ -338,4 +408,5 @@ class HomeController extends Controller
             return redirect()->route('')->with('info',"You can perform this action at the moment");
         }
     }
+
 }

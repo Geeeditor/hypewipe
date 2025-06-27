@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->validate([
             'email' => 'email',
-            // 'g-recaptcha-response' => 'recaptcha'
+            'g-recaptcha-response' => 'recaptcha'
         ]);
 
 
@@ -87,5 +87,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function deleteProfile(Request $request) {
+        $data = $request->validate([
+            'password' => 'string|required'
+        ]);
     }
 }

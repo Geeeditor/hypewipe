@@ -1,25 +1,39 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@extends('layouts.guest')
+@section('title', 'Reset Password')
+@section('content')
+<section class="py-10 md:py-20 w-[90%] md:w-[50%] h-[100%] md:h-fit">
+    <div class="mb-7 text-slate-200 text-center">
+        <h1 class="mb-6 font-[700] text-3xl oleo-script-bold">Hype Whip</h1>
+        <h2 class="mb-3 font-[500] text-base poppins-regular">Reset Your Password</h2>
+        <p class="text-sm poppins-light">Please enter your email address to receive a password reset link.</p>
     </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
+    <form class="w-full" method="POST" action="{{ route('password.email') }}">
         @csrf
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <label for="email" class="block font-light text-gray-500 text-sm">Email</label>
+            <input id="email"
+                   class="block shadow-sm mt-1 py-2 border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full"
+                   type="email"
+                   name="email"
+                   value="{{ old('email') }}"
+                   required
+                   autofocus
+                   autocomplete="email" />
+            @if ($errors->has('email'))
+                <div class="mt-2 text-red-600 text-sm">
+                    {{ $errors->first('email') }}
+                </div>
+            @endif
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
+        <div class="flex justify-end items-center mt-4">
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md text-white">
                 {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+            </button>
         </div>
     </form>
-</x-guest-layout>
+</section>
+@endsection

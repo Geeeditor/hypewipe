@@ -24,17 +24,35 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        // Validate the request data
+        $data = $request->validate([
+            'name' => 'nullable|string|max:255',
+            // 'email' => 'nullable|string|email|max:255|unique:users,email,' . Auth::id(),
+            'contact_no' => 'nullable|string|max:15', // Adjust max length as needed
+            'gender' => 'nullable|string|in:male,female,other' // Adjust options as needed
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = Auth::user();
+
+        // Dynamically update only the fields that are present in the request
+        foreach ($data as $key => $value) {
+            if ($value !== null) {
+                $user->$key = $value;
+
+                // Check if the email has changed
+                if ($key === 'email' && $user->isDirty('email')) {
+                    $user->email_verified_at = null;
+                }
+            }
         }
 
-        $request->user()->save();
+        // Save the updated user model
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        // Redirect back with a success message
+        return redirect()->back()->with('info', 'Profile updated successfully.');
     }
 
     /**
@@ -42,9 +60,17 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+        // $data = $request->validateWithBag('userDeletion', [
+        //     'password' => ['required', 'current_password'],
+        // ]);
+
+        $data = $request->validate([
+            'password' => 'required|string'
         ]);
+
+        if (!Auth::guard('web')->attempt(['email' => $request->user()->email, 'password' => $data['password']])) {
+            return redirect()->back()->with('info', 'Account termination unsuccessfull due to wrong password');
+        }
 
         $user = $request->user();
 
