@@ -171,9 +171,9 @@
             </div>
 
             <div class="flex justify-between items-center bg-gray-100 mx-3 mt-5 p-4 border border-gray-600 rounded-md">
-                <h2 class="mb-4 text-gray-800 text-base poppins-medium">Reset Password </h2>
+                <h2 class="mb-4 text-gray-800 text-base poppins-medium">Change your password </h2>
                 <div @click="resetPassword = !resetPassword"
-                    class="bg-red-600 hover:bg-red-800 px-3 py-2 rounded-sm text-white cursor-pointer">Change</div>
+                    class="bg-red-600 hover:bg-red-800 px-3 py-2 rounded-sm text-white cursor-pointer">Reset</div>
 
             </div>
             <div class="flex justify-between items-center bg-gray-100 mx-3 mt-5 p-4 border border-gray-600 rounded-md">
@@ -240,32 +240,74 @@
 
              <!-- Reset Password Modal -->
         <div x-transition x-show="resetPassword" @click.outside="resetPassword = false" id="reset-password" class="z-50 fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 mx-auto max-w-[425px]">
-            <form method="POST" action="{{ route('password.store') }}" class="bg-white shadow-lg p-6 rounded-lg w-[80%] h-fit">
+            <form method="POST" action="{{ route('update.password') }}" class="bg-white shadow-lg p-6 rounded-lg w-[80%] h-fit">
                 @csrf
-
+                @method('put')
 
                 <h2 class="mb-4 text-base poppins-bold">Reset Password</h2>
 
-                <!-- Email Address -->
-                <div>
-                    <label for="email" class="block font-light text-gray-500 text-sm">Email</label>
-                    <input id="email" name="email" type="email" value="{{ old('email') }}" required class="block shadow-sm mt-1 py-2 border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full">
+                <div class="flex flex-col gap-2">
+                    <div>
+                        <label for="current_password">
+                            Current Password
+                        </label>
+                        <div class="relative">
+                            <input id="current_password"
+                                class="block shadow-sm px-3 py-2 border border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full transition duration-200 password-inputmt-1"
+                                type="password" placeholder="Your password" name="current_password" required
+                                autocomplete="current-password" />
+                            <div class="top-0 right-[5px] absolute mt-3 cursor-pointer"
+                                onclick="togglePasswordVisibility('current_password')">
+                                <img class="hidden password-visible h-[20px]" src="{{ asset('./images/eye-open.svg') }}"
+                                    alt="Show Password">
+                                <img class="password-hidden h-[20px]" src="{{ asset('./images/eye-closed.svg') }}"
+                                    alt="Hide Password">
+                            </div>
+                        </div>
+                    </div>
 
+                    <div>
+                        <label for="new_password">
+                            New Password
+                        </label>
+                        <div class="relative">
+                            <input id="new_password"
+                                class="block shadow-sm px-3 py-2 border border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full transition duration-200 password-inputmt-1"
+                                type="password" placeholder="Your password" name="new_password" required
+                                autocomplete="current-password" />
+                            <div class="top-0 right-[5px] absolute mt-3 cursor-pointer"
+                                onclick="togglePasswordVisibility('new_password')">
+                                <img class="hidden password-visible h-[20px]" src="{{ asset('./images/eye-open.svg') }}"
+                                    alt="Show Password">
+                                <img class="password-hidden h-[20px]" src="{{ asset('./images/eye-closed.svg') }}"
+                                    alt="Hide Password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="confirm_password">
+                            Confirm Password
+                        </label>
+                        <div class="relative">
+                            <input id="confirm_password"
+                                class="block shadow-sm px-3 py-2 border border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full transition duration-200 password-inputmt-1"
+                                type="password" placeholder="Your password" name="new_password_confirmation" required
+                                autocomplete="current-password" />
+                            <div class="top-0 right-[5px] absolute mt-3 cursor-pointer"
+                                onclick="togglePasswordVisibility('confirm_password')">
+                                <img class="hidden password-visible h-[20px]" src="{{ asset('./images/eye-open.svg') }}"
+                                    alt="Show Password">
+                                <img class="password-hidden h-[20px]" src="{{ asset('./images/eye-closed.svg') }}"
+                                    alt="Hide Password">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- New Password -->
-                <div class="mt-4">
-                    <label for="password" class="block font-light text-gray-500 text-sm">New Password</label>
-                    <input id="password" name="password" type="password" required class="block shadow-sm mt-1 py-2 border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full">
 
-                </div>
 
-                <!-- Confirm Password -->
-                <div class="mt-4">
-                    <label for="password_confirmation" class="block font-light text-gray-500 text-sm">Confirm Password</label>
-                    <input id="password_confirmation" name="password_confirmation" type="password" required class="block shadow-sm mt-1 py-2 border-gray-300 focus:border-indigo-500 rounded-md focus:ring-indigo-500 w-full">
 
-                </div>
 
                 <button type="submit" class="bg-blue-600 hover:bg-blue-800 mt-4 px-4 py-2 rounded-md w-full text-white">Reset Password</button>
                 <div @click="resetPassword = false" class="bg-gray-300 hover:bg-gray-400 mt-2 px-4 py-2 rounded-md w-full text-gray-800 text-center cursor-pointer">Cancel</div>

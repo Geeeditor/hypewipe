@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rules;
 use App\Models\Quest;
 use App\Models\QuestJob;
 use App\Models\UserWallet;
@@ -13,7 +14,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\Models\UserAvailableWallet;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Notification as Notification;
+use Illuminate\Http\RedirectResponse;
 // use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
@@ -406,6 +409,28 @@ class HomeController extends Controller
             $user->delete();
         } else {
             return redirect()->route('')->with('info',"You can perform this action at the moment");
+        }
+    }
+
+    public function changePassword(Request $request): RedirectResponse
+    {
+        $user = Auth::user();
+
+        // Validate the input data
+        $data = $request->validate([
+            'current_password' => 'required|string',
+            'new_password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        // Check if the provided current password matches the user's password
+        if (Hash::check($data['current_password'], $user->password)) {
+            // Update the user's password
+            $user->password = Hash::make($data['new_password']);
+            $user->save();
+
+            return redirect()->back()->with('success', 'Password updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Current password is incorrect.');
         }
     }
 

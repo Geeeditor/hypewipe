@@ -51,9 +51,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/wallet/topup/process', [HomeController::class, 'topUpStore'])->name('wallet.topup.store');
 
+    Route::put('/password/change', [HomeController::class, 'changePassword'])->name('update.password');
+
     Route::delete('/available-wallets/{walletAddress}', [UserWalletController::class, 'deleteAvailableWallet'])
         ->name('available-wallets.delete');
-
 
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
