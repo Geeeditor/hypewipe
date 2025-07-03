@@ -220,7 +220,7 @@
                             @foreach ($withdrawals as $withdrawal )
                             <tr class="">
                                 <td width="50%" class="py-4 font-bold text-gray-900 text-sm whitespace-no-wrap">
-                                    Deposit - {{$withdrawal->updated_at->format('d M H:i')}}
+                                    Withdrawals - {{$withdrawal->updated_at->format('d M H:i')}}
 
                                     <div class="mt-1">
                                         <p class="font-normal text-gray-500">Payment Option - {{$withdrawal->wallet_name}}</p>

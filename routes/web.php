@@ -13,6 +13,8 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
+
+
 // Route::any()
 Route::middleware(['admin', 'web'])->group(function () {
     Route::screen('admin/wallet/edit/{adminWallet}', EditWalletScreen::class)
@@ -20,19 +22,23 @@ Route::middleware(['admin', 'web'])->group(function () {
 
     Route::get('admin/quests/create', [QuestController::class, 'create'])->name('admin.quest.create');
 
+    Route::get('admin/quests/edit/{id}', [QuestController::class, 'edit'])->name('admin.quest.edit');
+
     Route::post('/admin/quests/store', [QuestController::class, 'store'])->name('admin.quest.store');
+
+    Route::put('/admin/quests/update/{id}', [QuestController::class, 'update'])->name('admin.quest.update');
 });
 
-
-
-
-Route::middleware('auth')->group(function () {
-
+Route::middleware('user')->group(function () {
     Route::get('/wallet',  [HomeController::class, 'viewWallet'])->name('wallet');
 
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     Route::get('/tasks', [HomeController::class, 'quest'])->name('tasks');
+
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+    Route::get('/terms-and-conditions', [HomeController::class, 'terms'])->name('terms');
 
     Route::post('/tasks/store', [HomeController::class, 'questStore'])->name('tasks.store');
 
@@ -55,6 +61,13 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/available-wallets/{walletAddress}', [UserWalletController::class, 'deleteAvailableWallet'])
         ->name('available-wallets.delete');
+});
+
+
+
+Route::middleware('auth')->group(function () {
+
+
 
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');

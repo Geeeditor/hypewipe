@@ -6,16 +6,16 @@
     <title>Create Quest</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="flex min-h-screen items-center justify-center bg-gray-100">
-    <div class="w-full max-w-lg rounded-lg bg-white p-6 shadow-md">
-        <h1 class="mb-4 text-2xl font-bold">Create Quest</h1>
+<body class="flex justify-center items-center bg-gray-100 min-h-screen">
+    <div class="bg-white shadow-md p-6 rounded-lg w-full max-w-lg">
+        <h1 class="mb-4 font-bold text-2xl">Create Quest</h1>
 
         @if(session('success'))
-            <div class="mb-4 rounded bg-green-200 p-2 text-green-700">{{ session('success') }}</div>
+            <div class="bg-green-200 mb-4 p-2 rounded text-green-700">{{ session('success') }}</div>
         @endif
 
         @if($errors->any())
-            <div class="mb-4 rounded bg-red-200 p-2 text-red-700">
+            <div class="bg-red-200 mb-4 p-2 rounded text-red-700">
                 <ul>
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -28,76 +28,76 @@
             @csrf
 
             <div class="mb-4">
-                <label for="make" class="block text-sm font-medium text-gray-700">Make:</label>
-                <input type="text" name="make" id="make" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="make" class="block font-medium text-gray-700 text-sm">Make:</label>
+                <input type="text" name="make" id="make" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="model" class="block text-sm font-medium text-gray-700">Model:</label>
-                <input type="text" name="model" id="model" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="model" class="block font-medium text-gray-700 text-sm">Model:</label>
+                <input type="text" name="model" id="model" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="year" class="block text-sm font-medium text-gray-700">Year:</label>
-                <input type="number" name="year" id="year" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="year" class="block font-medium text-gray-700 text-sm">Year:</label>
+                <input type="number" name="year" id="year" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="color" class="block text-sm font-medium text-gray-700">Color:</label>
-                <input type="text" name="color" id="color" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="color" class="block font-medium text-gray-700 text-sm">Color:</label>
+                <input type="text" name="color" id="color" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="vin" class="block text-sm font-medium text-gray-700">VIN:</label>
-                <input type="text" name="vin" id="vin" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="vin" class="block font-medium text-gray-700 text-sm">VIN:</label>
+                <input type="text" name="vin" id="vin" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="mileage" class="block text-sm font-medium text-gray-700">Mileage:</label>
-                <input type="number" name="mileage" id="mileage" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="mileage" class="block font-medium text-gray-700 text-sm">Mileage:</label>
+                <input type="number" name="mileage" id="mileage" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="engine_type" class="block text-sm font-medium text-gray-700">Engine Type:</label>
-                <input type="text" name="engine_type" id="engine_type" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="engine_type" class="block font-medium text-gray-700 text-sm">Engine Type:</label>
+                <input type="text" name="engine_type" id="engine_type" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="transmission" class="block text-sm font-medium text-gray-700">Transmission:</label>
-                <input type="text" name="transmission" id="transmission" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="transmission" class="block font-medium text-gray-700 text-sm">Transmission:</label>
+                <input type="text" name="transmission" id="transmission" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="fuel_type" class="block text-sm font-medium text-gray-700">Fuel Type:</label>
-                <input type="text" name="fuel_type" id="fuel_type" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="fuel_type" class="block font-medium text-gray-700 text-sm">Fuel Type:</label>
+                <input type="text" name="fuel_type" id="fuel_type" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="price" class="block text-sm font-medium text-gray-700">Task Cost:</label>
-                <input type="number" name=" quest_cost" id="price" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="price" class="block font-medium text-gray-700 text-sm">Task Cost:</label>
+                <input type="number" name="task_cost" id="" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
             <div class="mb-4">
-                <label for="price" class="block text-sm font-medium text-gray-700">Task Commission:</label>
-                <input type="number" name="quest_commission" id="" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
+                <label for="price" class="block font-medium text-gray-700 text-sm">Task Reward:</label>
+                <input type="number" name="task_reward" id="" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
             <div class="mb-4">
-                <label for="price" class="block text-sm font-medium text-gray-700">Price:</label>
-                <input type="number" name="price" id="price" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500">
-            </div>
-
-            <div class="mb-4">
-                <label for="description" class="block text-sm font-medium text-gray-700">Description:</label>
-                <textarea name="description" id="description" required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500"></textarea>
+                <label for="price" class="block font-medium text-gray-700 text-sm">Vehicle Market Value:</label>
+                <input type="number" name="vmv" id="vmv" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full">
             </div>
 
             <div class="mb-4">
-                <label for="image" class="block text-sm font-medium text-gray-700">Upload Images:</label>
-                <input type="file" name="image[]" id="image"  required class="mt-1 block w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-blue-500" accept=".jpg, .png, .webp, .jpeg" multiple>
+                <label for="description" class="block font-medium text-gray-700 text-sm">Description:</label>
+                <textarea name="description" id="description" required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full"></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="image" class="block font-medium text-gray-700 text-sm">Upload Images:</label>
+                <input type="file" name="image[]" id="image"  required class="block mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500 w-full" accept=".jpg, .png, .webp, .jpeg" >
             </div>
 
             <div class="flex justify-between">
-                <a href="{{ url()->previous() }}" class="text-blue-600 hover:underline">Back</a>
-                <button type="submit" class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Submit</button>
+                <a href="{{ route('admin.quest.list') }}" class="text-blue-600 hover:underline">Back</a>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-white">Submit</button>
             </div>
         </form>
     </div>

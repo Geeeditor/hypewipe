@@ -67,7 +67,7 @@ Route::screen('users/topup/{id}', TopupUserEdit::class)->name('admin.users.topup
 
 Route::screen('quest/list', QuestListScreen::class)->name('admin.quest.list');
 
-Route::screen('quest/view/update/{id}', UpdateQuestScreen::class)->name('admin.quest.update');
+// Route::screen('quest/view/update/{id}', UpdateQuestScreen::class)->name('admin.quest.update');
 
 
 

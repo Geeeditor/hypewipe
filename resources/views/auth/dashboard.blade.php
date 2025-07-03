@@ -28,17 +28,17 @@
                     <div class="flex justify-between bg-slate-100 shadow-gray-700 shadow-sm my-2 px-1 py-3 border-gray-300 rounded-md w-[100%] text-gray-900 text-center">
                         <div class="flex flex-col justify-start items-start border-gray-300">
                             <span class="text-[70%] poppins-light">Credit Balance</span>
-                            <span class="text-sm poppins-medium">
+                            <span class="text-sm poppins-light">
                                 {{ $user->userWallet ? ( '$' . $user->userWallet->wallet_balance ?? 'No wallet :)') : 'No wallet :)' }}
                             </span>
                         </div>
                         <div class="flex flex-col justify-start items-start px-4 border-gray-300 border-x">
                             <span class="text-[70%] poppins-light">Total Earnings</span>
-                            <span class="text-sm poppins-medium">${{ $user->questJob ? $user->questJob->earnings ?? '0.00' : '0.00' }}</span>
+                            <span class="text-sm poppins-light">${{ $user->questJob ? $user->questJob->earnings ?? '0.00' : '0.00' }}</span>
                         </div>
                         <div class="flex flex-col justify-start items-start border-gray-300">
                             <span class="text-[70%] poppins-light">Completed Tasks</span>
-                            <span class="text-sm poppins-medium">{{ $user->questJob ? $user->questJob->quest_done . '/38' ?? '0/38' : '0/38' }}</span>
+                            <span class="text-sm poppins-light">{{ $user->questJob ? $user->questJob->quest_done . '/38' ?? '0/38' : '0/38' }}</span>
                         </div>
 
 
@@ -80,7 +80,7 @@
                         <span class="font-bold text-indigo-600 capitalize">Our Comprehensive Web Application</span>
 
                     </h2>
-                    <p class="mt-1 text-1xl poppins-medium">A complete web-based application designed for car reviewers that enables users
+                    <p class="mt-1 text-1xl poppins-light">A complete web-based application designed for car reviewers that enables users
                         to easily discover, evaluate, and manage vehicle reviews on behalf of their audience.</p>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                         <span class="font-bold text-indigo-600 capitalize">with HypeWhip Bot</span>
 
                     </h2>
-                    <p class="mt-1 text-1xl poppins-medium">With HypeWhip Bot, effortlessly manage tasks, track performance, and optimize your workflow. Our bot is specifically designed to enhance your operations and boost productivity.
+                    <p class="mt-1 text-1xl poppins-light">With HypeWhip Bot, effortlessly manage tasks, track performance, and optimize your workflow. Our bot is specifically designed to enhance your operations and boost productivity.
                     </p>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                         <span class="font-bold text-indigo-600 capitalize">Our Review Management Bot</span>
 
                     </h2>
-                    <p class="mt-1 text-1xl poppins-medium">
+                    <p class="mt-1 text-1xl poppins-light">
                         Make the most of your time with our bot, crafted to help you manage tasks, track performance, and optimize your workflow. Effortlessly enhance your productivity and streamline your operations.
 
 
@@ -128,7 +128,7 @@
                         <span class="font-bold text-indigo-600 capitalize">HypeWhip</span>
 
                     </h2>
-                    <p class="mt-1 text-1xl poppins-medium">With HypeWhip Bot
+                    <p class="mt-1 text-1xl poppins-light">With HypeWhip Bot
 
                         Manage tasks, track performance, and optimize your workflow with ease. Our bot is designed to
                         streamline your operations and enhance your productivity.

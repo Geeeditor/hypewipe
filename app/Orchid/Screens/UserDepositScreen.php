@@ -98,7 +98,8 @@ class UserDepositScreen extends Screen
             Layout::table('deposits', [
                 TD::make('id', 'ID')->width('100'),
                 TD::make('users_email', 'User Name')->cantHide(),
-                TD::make('wallet_id', 'Wallet ID'),
+                TD::make('crypto_option', 'Crypto Option'),
+                TD::make('transaction_hash', 'Transaction Hash'),
                 TD::make('transaction_status', 'Transaction Status'),
                 TD::make('deposit_amount', 'Deposit Amount'),
                 TD::make('created_at', 'Created')

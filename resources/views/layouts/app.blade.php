@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/a21ee8a7f1.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="https://placehold.co/300x300/000000/FFF?text=hw" type="image/x-icon">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
@@ -247,7 +248,7 @@
                 </div>
             </div>
         </div>
-        <a href="/about" class="flex items-center gap-3 pb-2 border-gray-400 border-b w-full">
+        <a href="{{route('about')}}" class="flex items-center gap-3 pb-2 border-gray-400 border-b w-full">
             <div class="flex justify-center items-center bg-blue-600 p-2 rounded-full w-[35px] h-[35px] text-white">
                 <span class="px-1 border border-white rounded-full mdi-information-outline mdi"></span>
             </div>
@@ -255,7 +256,7 @@
                 <span class="text-[70%] poppins-light">About</span>
             </div>
         </a>
-        <a href="/terms" class="flex items-center gap-3 pb-2 border-gray-400 border-b w-full">
+        <a href="{{route('terms')}}" class="flex items-center gap-3 pb-2 border-gray-400 border-b w-full">
             <div class="flex justify-center items-center bg-blue-600 p-2 rounded-full w-[35px] h-[35px] text-white">
                 <span class="px-1 border border-white rounded-full mdi mdi-vpn"></span>
             </div>
@@ -263,14 +264,14 @@
                 <span class="text-[70%] poppins-light">Terms and Condition</span>
             </div>
         </a>
-        <a href="/faq" class="flex items-center gap-3 pb-2 border-gray-400 border-b w-full">
+        {{-- <a href="/faq" class="flex items-center gap-3 pb-2 border-gray-400 border-b w-full">
             <div class="flex justify-center items-center bg-blue-600 p-2 rounded-full w-[35px] h-[35px] text-white">
                 <span class="px-1 border border-white rounded-full mdi mdi-frequently-asked-questions"></span>
             </div>
             <div>
                 <span class="text-[70%] poppins-light">FAQS</span>
             </div>
-        </a>
+        </a> --}}
         <a href="{{route('wallet.topup')}}" class="flex items-center gap-3 pb-2 border-gray-400 border-b w-full">
             <div class="flex justify-center items-center bg-blue-600 p-2 rounded-full w-[35px] h-[35px] text-white">
                 <span class="px-1 border border-white rounded-full mdi mdi-cash-fast"></span>

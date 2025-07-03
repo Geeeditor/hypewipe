@@ -89,17 +89,15 @@ class QuestListScreen extends Screen
                 TD::make('model', 'Model')->width('100px'),
                 TD::make('year', 'Year')->width('100px'),
                 TD::make('mileage', 'Mileage'),
-                TD::make('engine_type', 'Engine Type'),
-                TD::make('transmission', 'Transmission'),
                 TD::make('fuel_type', 'Fuel Type')->width('100px'),
-                TD::make('quest_cost', 'Task Cost')->width('100px'),
-                TD::make('quest_commission', 'Task Commission')->width('100px'),
+                TD::make('task_cost', 'Task Cost')->width('100px'),
+                TD::make('task_reward', 'Task Reward')->width('100px'),
 
                 TD::make('actions', 'Actions')->render(
                     function (Repository $quest) {
-                        // Link::make('Edit')
-                        //     ->route('admin.quest.update', $quest->get('id')). ' | ' .
-                       return  Button::make('Delete')
+                        return Link::make('Edit')
+                            ->route('admin.quest.edit', $quest->get('id')). ' | ' .
+                         Button::make('Delete')
                             ->method('deleteQuest')
                             ->confirm('Are you sure you want to delete this wallet?')
                             ->parameters(['id' => $quest->get('id')]);

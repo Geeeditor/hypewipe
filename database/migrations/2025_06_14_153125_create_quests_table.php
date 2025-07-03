@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('engine_type')->nullable(); // e.g., Gasoline, Diesel, Electric
             $table->string('transmission')->nullable(); // e.g., Automatic, Manual
             $table->string('fuel_type')->nullable(); // e.g., Gas, Electric, Hybrid
-            $table->decimal('price', 10, 2); // Price of the vehicle
-            $table->decimal('quest_cost', 10, 2);
-            $table->integer('quest_commission');
+            $table->decimal('vmv', 10, 2); // Price of the vehicle
+            $table->decimal('task_cost', 10, 2);
+            $table->integer('task_reward');
             $table->text('description')->nullable(); // Additional information about the car
             $table->timestamps(); // Created at and updated at timestamps
         });

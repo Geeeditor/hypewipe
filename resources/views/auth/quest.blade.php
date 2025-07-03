@@ -17,7 +17,7 @@
                     <div class="flex justify-between items-center bg-opacity-90 bg-cover bg-center my-2 px-4 py-3 rounded w-[100%] text-white capitalize"
                         style="background: linear-gradient(90deg, #3a96ecad 0%, #3a96ecad 100%), url('images/blue-texture.jpg');">
                         <div>
-                            <p class="font-bold tracking-wider">Hi John Doe!</p>
+                            <p class="font-bold tracking-wider">Hi {{$user->name}}!</p>
                             <h3 class="text-sm tracking-wide poppins-light">Explore Your Daily Task For Rewards,</h3>
                         </div>
                         <div>
@@ -124,7 +124,7 @@
                                         <div class="flex flex-col justify-center items-center h-2/3">
                                             <h3 class="font-bold text-base">{{ $task->make }}</h3>
                                             <p>Year: {{ $task->year }}</p>
-                                            <p>Price: ${{ number_format($task->price) }}</p>
+                                            <p>Task Cost: ${{ number_format($task->task_cost) }}</p>
                                             <p>Mileage: {{ $task->mileage }} MPG</p>
                                             <code>{{ $currentTaskPosition }}/38</code>
                                             <!-- Display current task position -->
@@ -152,23 +152,23 @@
                                                     <p class="text-sm poppins-regular">Engine Type: <span class="font-semibold">{{ $task->engine_type }}</span></p>
                                                     <p class="text-sm poppins-regular">Transmission: <span class="font-semibold">{{ $task->transmission }}</span></p>
                                                     <p class="text-sm poppins-regular">Fuel Type: <span class="font-semibold">{{ $task->fuel_type }}</span></p>
-                                                    <p class="text-sm poppins-regular">Price: <span class="font-semibold">${{ number_format($task->price) }}</span></p>
+
                                                 </div>
                                             </div>
                                             <div class="mb-4">
                                                 <h2 class="mb-2 border-gray-500 border-b font-bold text-xl oleo-script-bold">Task Requirements</h2>
                                                 <p class="text-gray-700">
-                                                    To complete this task, you must maintain a credit balance of at least <span class="font-semibold">${{ $task->quest_cost }}</span>.
+                                                    - To complete this task, you must maintain a credit balance of at least <span class="font-semibold">${{ $task->task_cost }}</span>.
                                                 </p>
                                                 <p class="text-gray-700">
-                                                    Quest Commission: <span class="font-semibold">{{ $task->quest_commission }}%</span>
+                                                    - Task Reward: Complete this task to earn <span class="font-semibold">${{ $task->task_reward }}</span>
                                                 </p>
                                             </div>
                                         </div>
 
                                         <div>
-                                            <input type="text" name="quest_cost" value="{{$task->quest_cost}}" hidden>
-                                            <input type="text" name="quest_commission" value="{{$task->quest_commission}}" hidden>
+                                            <input type="text" name="task_cost" value="{{$task->task_cost}}" hidden>
+                                            <input type="text" name="task_reward" value="{{$task->task_reward}}" hidden>
                                         </div>
                                         <div>
                                             <label class="mb-4 text-gray-700 text-sm poppins-medium">Tell us what you think</label>
@@ -214,7 +214,7 @@
                                         </div>
 
                                         <button
-                                            class="bg-blue-600 hover:bg-blue-800 mt-4 px-4 py-2 rounded-md w-full text-white">Update</button>
+                                            class="bg-blue-600 hover:bg-blue-800 mt-4 px-4 py-2 rounded-md w-full text-white">Complete Task</button>
                                         <div @click="reviewModal = !reviewModal"
                                             class="bg-gray-300 hover:bg-gray-400 mt-2 px-4 py-2 rounded-md w-full text-gray-800 text-center cursor-pointer">
                                             Cancel</div>
@@ -238,25 +238,27 @@
                 <div class="bg-gray-800 text-gray-100">
                     <div class="bg-gray-900 shadow-sm mx-auto px-10 py-6 rounded-lg max-w-4xl container">
                         <div class="flex justify-between items-center">
-                            <span class="text-gray-400 text-sm">Jun 1, 2020</span>
+                            <span class="text-gray-400 text-sm">Jul 2, 2025</span>
                             <a rel="noopener noreferrer" href="#"
-                                class="bg-violet-400 px-2 py-1 rounded font-bold text-gray-900">Javascript</a>
+                                class="bg-blue-500 px-2 py-1 rounded font-bold text-gray-900">Car Reviews</a>
                         </div>
                         <div class="mt-3">
-                            <a rel="noopener noreferrer" href="#" class="font-bold text-2xl hover:underline">Nos
-                                creasse pendere crescit angelos etc</a>
-                            <p class="mt-2">Tamquam ita veritas res equidem. Ea in ad expertus paulatim poterunt. Imo volo
-                                aspi novi tur. Ferre hic neque vulgo hae athei spero. Tantumdem naturales excaecant
-                                notaverim etc cau perfacile occurrere. Loco visa to du huic at in dixi aër.</p>
+                            <a rel="noopener noreferrer" href="#" class="font-bold text-2xl hover:underline">Unveiling the 2025
+                                Electric Dream Machine</a>
+                            <p class="mt-2">Discover the future of driving with our in-depth review of the highly anticipated 2025
+                                Electric Dream Machine. We cover everything from its revolutionary battery technology and lightning-fast
+                                charging capabilities to its luxurious interior and cutting-edge autonomous features. Learn about
+                                its impressive range, performance metrics, and how it stacks up against the competition in the
+                                rapidly evolving EV market. This car isn't just a vehicle; it's a statement.</p>
                         </div>
                         <div class="flex justify-between items-center mt-4">
-                            <a rel="noopener noreferrer" href="#" class="text-violet-400 hover:underline">Read
+                            <a rel="noopener noreferrer" href="#" class="text-blue-400 hover:underline">Read
                                 more</a>
                             <div>
                                 <a rel="noopener noreferrer" href="#" class="flex items-center">
-                                    <img src="https://source.unsplash.com/50x50/?portrait" alt="avatar"
+                                    <img src="https://blog.autochek.africa/wp-content/uploads/2019/06/Luxury-Cars-in-Nigeria-1.jpg" alt="avatar"
                                         class="bg-gray-500 mx-4 rounded-full w-10 h-10 object-cover">
-                                    <span class="text-gray-400 hover:underline">Leroy Jenkins</span>
+                                    <span class="text-gray-400 hover:underline">Auto Enthusiast</span>
                                 </a>
                             </div>
                         </div>

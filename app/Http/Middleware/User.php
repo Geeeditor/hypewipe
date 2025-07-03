@@ -24,7 +24,7 @@ class User
 
 
 
-        return redirect()->route('index.login');
+        return redirect()->route('login');
         // return $next($request);
     }
 }

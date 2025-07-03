@@ -71,6 +71,22 @@ class HomeController extends Controller
         return view('auth.dashboard', ['user' => $user, 'profilePic' => $profilePic]);
     }
 
+    public function about()
+    {
+        $user = Auth()->user();
+        $profilePic = $this->getUserPlaceholderImage();
+        // dd($profilePic);
+        return view('about', ['user' => $user, 'profilePic' => $profilePic]);
+    }
+
+    public function terms()
+    {
+        $user = Auth()->user();
+        $profilePic = $this->getUserPlaceholderImage();
+        // dd($profilePic);
+        return view('term', ['user' => $user, 'profilePic' => $profilePic]);
+    }
+
     public function viewProfile()
     {
         $user = Auth()->user();
@@ -117,8 +133,8 @@ class HomeController extends Controller
         // Step 1: Validate the request data
         $data = $request->validate([
             'comment' => 'required|string|max:255',
-            'quest_cost' => 'required|numeric|min:0',
-            'quest_commission' => 'required|numeric|min:0|max:100'
+            'task_cost' => 'required|numeric|min:0',
+            'task_reward' => 'required|numeric|min:0|max:100'
         ]);
 
 
@@ -134,18 +150,18 @@ class HomeController extends Controller
             return redirect()->back()->with('error', "Our system can't find a wallet to charge, please create one to begin enjoying your rewards.");
         }
 
-        if ( $userWallet->wallet_balance < $data['quest_cost']) {
+        if ( $userWallet->wallet_balance < $data['task_cost']) {
             return redirect()->back()->with('error', 'Insufficient balance to complete this task.');
         }
 
         // Step 5: Deduct the quest cost from the wallet balance
-        $userWallet->wallet_balance -= $data['quest_cost'];
+        $userWallet->wallet_balance -= $data['task_cost'];
         $userWallet->save();
 
         // Step 6: Update the user's questJob model
         $questJob = $user->questJob; // Assuming there's a relationship in User model
         $questJob->quest_done += 1; // Increment quest_done by 1
-        $questJob->earnings += ($data['quest_cost'] * $data['quest_commission'] / 100); // Calculate earnings
+        $questJob->earnings += $data['task_reward']; // Calculate earnings
         $questJob->save();
 
         // Step 7: Redirect user back with a success message
@@ -387,7 +403,7 @@ class HomeController extends Controller
         $withdrawal->wallet_name = $userAvailableWallet->wallet_name;
         $withdrawal->wallet_type = $userAvailableWallet->wallet_type;
         // dd($quest );
-        if($data['debit_amount'] > $quest->earnings) {
+        if($data['debit_amount'] > $quest->earnings  && $quest->earnings < 100.00 ) {
             return redirect()->back()->with('error', "You don't have enough funds to cover the withdrawal amount");
         }
         $withdrawal->withdrawal_amount = $data['debit_amount'];
@@ -395,7 +411,7 @@ class HomeController extends Controller
         $withdrawal->save();
         return redirect()->back()->with('info', 'Your withdrawal is processing');
 
-        // dd($data);
+        // dd($datPa);
     }
 
     public function destroyWallet(Request $request, $walletAddress){

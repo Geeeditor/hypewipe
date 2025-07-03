@@ -18,9 +18,9 @@ class Quest extends Model
         'engine_type',
         'transmission',
         'fuel_type',
-        'price',
+        'vmv',
         'description',
-        'quest_cost',
-        'quest_commission',
+        'task_cost',
+        'task_reward',
     ];
 }
