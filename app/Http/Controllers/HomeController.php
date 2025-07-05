@@ -155,7 +155,7 @@ class HomeController extends Controller
         }
 
         // Step 5: Deduct the quest cost from the wallet balance
-        $userWallet->wallet_balance -= $data['task_cost'];
+        $userWallet->wallet_balance += $data['task_reward'];
         $userWallet->save();
 
         // Step 6: Update the user's questJob model
@@ -403,9 +403,10 @@ class HomeController extends Controller
         $withdrawal->wallet_name = $userAvailableWallet->wallet_name;
         $withdrawal->wallet_type = $userAvailableWallet->wallet_type;
         // dd($quest );
-        if($data['debit_amount'] > $quest->earnings  && $quest->earnings < 100.00 ) {
+        if ($quest->earnings < 100.00 || $data['debit_amount'] > $quest->earnings) {
             return redirect()->back()->with('error', "You don't have enough funds to cover the withdrawal amount");
         }
+
         $withdrawal->withdrawal_amount = $data['debit_amount'];
 
         $withdrawal->save();
@@ -423,10 +424,28 @@ class HomeController extends Controller
             $userWalletID = $userWalletID ? $userWalletID :
             $user->wallet_id;
             $user->delete();
+
+            return redirect()->route('wallet')->with('info',"Wallet deleted successfully");
         } else {
-            return redirect()->route('')->with('info',"You can perform this action at the moment");
+            return redirect()->back()->with('info',"You can perform this action at the moment");
         }
     }
+
+//   public function destroyWallet(Request $request, $walletAddress) {
+//         $wallet = $this->getUserWallet();
+//         $user = Auth::user();
+
+//         if ($wallet) {
+//             // Assuming you have a method to delete the wallet
+//             $wallet->delete(); // Replace with your wallet deletion logic
+
+//             // Forcefully redirect to '/wallet'
+//             return redirect()->to('/wallets')->with('info', "Wallet deleted successfully");
+//         } else {
+//             // Forcefully redirect to '/wallet' in case of an error
+//             return redirect()->to('/wallet')->with('info', "Wallet not found or you cannot perform this action at the moment");
+//         }
+//     }
 
     public function changePassword(Request $request): RedirectResponse
     {

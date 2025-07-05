@@ -73,7 +73,7 @@ class UserWalletController extends Controller
             if ($userAvailableWallet) {
 
                     $userAvailableWallet->delete();
-                    return redirect()->back()->with('success', 'Wallet deleted successfully!');
+                   return redirect()->to('/wallet')->with('info', "Wallet deleted successfully");
 
             } else {
                 return redirect()->back()->with('error', 'Wallet not found');

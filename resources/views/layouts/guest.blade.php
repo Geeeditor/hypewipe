@@ -8,6 +8,7 @@
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title') </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="shortcut icon" href="https://placehold.co/300x300/000000/FFF?text=hw" type="image/x-icon">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

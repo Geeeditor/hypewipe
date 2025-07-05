@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-    {{-- canaconical --}}
+
     <script src="//unpkg.com/alpinejs" defer></script>
 
-    {{-- <link rel="canonical" href="http://hypewhip.loca.lt/"> --}}
+
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
 
