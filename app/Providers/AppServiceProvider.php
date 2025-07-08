@@ -21,8 +21,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        $this->app->make('Illuminate\Console\Scheduling\Schedule')->call(function () {
-            Artisan::call('quests:reset');
-        })->daily();
+
     }
 }

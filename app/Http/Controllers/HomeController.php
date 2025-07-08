@@ -134,7 +134,7 @@ class HomeController extends Controller
         $data = $request->validate([
             'comment' => 'required|string|max:255',
             'task_cost' => 'required|numeric|min:0',
-            'task_reward' => 'required|numeric|min:0|max:100'
+            'task_reward' => 'required|numeric|min:0'
         ]);
 
 
@@ -151,7 +151,7 @@ class HomeController extends Controller
         }
 
         if ( $userWallet->wallet_balance < $data['task_cost']) {
-            return redirect()->back()->with('error', 'Insufficient balance to complete this task.');
+            return redirect()->back()->with('error', 'Please fund your wallet to meet up with the required balance.');
         }
 
         // Step 5: Deduct the quest cost from the wallet balance
@@ -403,7 +403,7 @@ class HomeController extends Controller
         $withdrawal->wallet_name = $userAvailableWallet->wallet_name;
         $withdrawal->wallet_type = $userAvailableWallet->wallet_type;
         // dd($quest );
-        if ($quest->earnings < 100.00 || $data['debit_amount'] > $quest->earnings) {
+        if ($quest->earnings < 2000.00 || $data['debit_amount'] > $quest->earnings) {
             return redirect()->back()->with('error', "You don't have enough funds to cover the withdrawal amount");
         }
 

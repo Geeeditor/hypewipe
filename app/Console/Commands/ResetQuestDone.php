@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\QuestJob;
+// /usr/local/bin/php /home/hypejizk/public_html/path/to/laravel/artisan quests:reset
 
 class ResetQuestDone extends Command
 {
